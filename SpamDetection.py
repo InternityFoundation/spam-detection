@@ -28,3 +28,22 @@ def make_Dictionary(train_dir):
     dictionary = dictionary.most_common(3000)
 
     return dictionary
+
+## Feature Extraction Process
+def extract_features(mail_dir): 
+    files = [os.path.join(mail_dir,fi) for fi in os.listdir(mail_dir)]
+    features_matrix = np.zeros((len(files),3000))
+    docID = 0;
+    for fil in files:
+      with open(fil) as fi:
+        for i,line in enumerate(fi):
+          if i == 2:
+            words = line.split()
+            for word in words:
+              wordID = 0
+              for i,d in enumerate(dictionary):
+                if d[0] == word:
+                  wordID = i
+                  features_matrix[docID,wordID] = words.count(word)
+        docID = docID + 1     
+    return features_matrix
