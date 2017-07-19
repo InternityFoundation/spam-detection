@@ -72,3 +72,7 @@ test_labels = np.zeros(260)
 test_labels[130:260] = 1
 result1 = model1.predict(test_matrix)
 result2 = model2.predict(test_matrix)
+
+## Finding out accuracy of our models
+print confusion_matrix(test_labels,result1)
+print confusion_matrix(test_labels,result2)
