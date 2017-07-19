@@ -63,3 +63,12 @@ model1 = MultinomialNB()
 model2 = LinearSVC()
 model1.fit(train_matrix,train_labels)
 model2.fit(train_matrix,train_labels)
+
+## Predicting test dataset using our classifiers
+# Test the unseen mails for Spam
+test_dir = 'test-mails'
+test_matrix = extract_features(test_dir)
+test_labels = np.zeros(260)
+test_labels[130:260] = 1
+result1 = model1.predict(test_matrix)
+result2 = model2.predict(test_matrix)
